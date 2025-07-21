@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject timeText;     //時間テキスト
     TimeController timeCnt;         //TimeController
 
+    // +++ スコア追加 +++
+    public GameObject scoreText;    //スコアテキスト
+    public static int totalScore;   //合計スコア
+    public int stageScore = 0;      //ステージスコア
+
     void Start()
     {
         //画像を非表示にする
@@ -35,6 +40,9 @@ public class GameManager : MonoBehaviour
                 timeBar.SetActive(false);   //時間制限無しなら隠す
             }
         }
+
+        // +++ スコア追加 +++
+        UpdateScore();
     }
 
     void Update()
@@ -54,7 +62,16 @@ public class GameManager : MonoBehaviour
             if(timeCnt != null)
             {
                 timeCnt.isTimeOver = true;  //時間カウント停止
+                // +++ スコア追加 +++
+                //整数に代入することで少数を切り捨てる
+                int time = (int)timeCnt.displayTime;
+                totalScore += time * 10;    //残り時間をスコアに加える
             }
+
+            // +++ スコア追加 +++
+            totalScore += stageScore;
+            stageScore = 0;
+            UpdateScore();  //スコア更新
         }
         else if(PlayerController.gameState == "gameover")
         {
@@ -96,11 +113,26 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+
+            // +++ スコア追加 +++
+            if(playerCnt.score != 0)
+            {
+                stageScore += playerCnt.score;
+                playerCnt.score = 0;
+                UpdateScore();
+            }
         }
     }
     //画像を非表示にする
     void InactiveImage()
     {
         mainImage.SetActive(false);
+    }
+
+    // +++ スコア追加 +++
+    void UpdateScore()
+    {
+        int score = stageScore + totalScore;
+        scoreText.GetComponent<Text>().text = score.ToString();
     }
 }
