@@ -9,6 +9,11 @@ public class CameraManager : MonoBehaviour
 
     public GameObject subScreen;        //サブスクリーン
 
+    public bool isForceScrollX = false;     //強制スクロールフラグ
+    public float forceScrollSpeedX = 0.5f;  //１秒間で動かすＸ距離
+    public bool isForceScrollY = false;     //Ｙ軸強制スクロールフラグ
+    public float forceScrollSpeedY = 0.5f;  //１秒間で動かすＹ距離
+
     void Start()
     {
         
@@ -25,6 +30,12 @@ public class CameraManager : MonoBehaviour
             float z = transform.position.z;
 
             //横同期させる
+            if (isForceScrollX)
+            {
+                //横強制スクロール
+                x = transform.position.x + (forceScrollSpeedX * Time.deltaTime);
+            }
+
             //両端に移動制限をつける
             if (x < leftLimit)
             {
@@ -36,6 +47,12 @@ public class CameraManager : MonoBehaviour
             }
 
             //縦同期させる
+            if (isForceScrollY)
+            {
+                //縦強制スクロール
+                y = transform.position.y + (forceScrollSpeedY * Time.deltaTime);
+            }
+
             //上下に移動制限をつける
             if (y < bottomLimit)
             {
