@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 293676281}
   - component: {fileID: 293676280}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: TitleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
