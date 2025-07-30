@@ -44,9 +44,9 @@ public class CannonController : MonoBehaviour
                 passedTimes = 0;        //時間を０にリセット
                 //砲弾をプレハブから作る
                 Vector2 pos = new Vector2(gateTransform.position.x, gateTransform.position.y);
-                GameObject odj = Instantiate(objPrefab, pos, Quaternion.identity);
+                GameObject obj = Instantiate(objPrefab, pos, Quaternion.identity);
                 //砲身が向いている方向に発射する
-                Rigidbody2D rbody = objPrefab.GetComponent<Rigidbody2D>();
+                Rigidbody2D rbody = obj.GetComponent<Rigidbody2D>();
                 float angleZ = transform.localEulerAngles.z;
                 float x = Mathf.Cos(angleZ * Mathf.Deg2Rad);
                 float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
