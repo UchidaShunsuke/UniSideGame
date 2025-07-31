@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public static int totalScore;   //合計スコア
     public int stageScore = 0;      //ステージスコア
 
+    // +++ サウンド再生追加 +++
+    public AudioClip meGameOver;    //ゲームオーバー
+    public AudioClip meGameClear;   //ゲームクリア
+
     void Start()
     {
         //画像を非表示にする
@@ -72,6 +76,16 @@ public class GameManager : MonoBehaviour
             totalScore += stageScore;
             stageScore = 0;
             UpdateScore();  //スコア更新
+
+            // +++ サウンド再生追加 +++
+            //サウンド再生
+            AudioSource soundPlayer = GetComponent<AudioSource>();
+            if(soundPlayer != null)
+            {
+                //BGM停止
+                soundPlayer.Stop();
+                soundPlayer.PlayOneShot(meGameClear);
+            }
         }
         else if(PlayerController.gameState == "gameover")
         {
@@ -88,6 +102,16 @@ public class GameManager : MonoBehaviour
             if (timeCnt != null)
             {
                 timeCnt.isTimeOver = true;  //時間カウント停止
+            }
+
+            // +++ サウンド再生追加 +++
+            //サウンド再生
+            AudioSource soundPlayer = GetComponent<AudioSource>();
+            if (soundPlayer != null)
+            {
+                //BGM停止
+                soundPlayer.Stop();
+                soundPlayer.PlayOneShot(meGameOver);
             }
         }
         else if (PlayerController.gameState == "playing")
