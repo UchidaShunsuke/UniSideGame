@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     public AudioClip meGameOver;    //ゲームオーバー
     public AudioClip meGameClear;   //ゲームクリア
 
+    // +++ プレイヤー操作 +++      ※書いただけで未実装
+    /*
+    public GameObject inputUI;      //操作UIパネル
+    */
+
     void Start()
     {
         //画像を非表示にする
@@ -86,6 +91,11 @@ public class GameManager : MonoBehaviour
                 soundPlayer.Stop();
                 soundPlayer.PlayOneShot(meGameClear);
             }
+
+            // +++ プレイヤー操作 +++      ※書いただけで未実装
+            /*
+             inputUI.SetActive(false);      //操作UI隠す
+             */
         }
         else if(PlayerController.gameState == "gameover")
         {
@@ -113,6 +123,11 @@ public class GameManager : MonoBehaviour
                 soundPlayer.Stop();
                 soundPlayer.PlayOneShot(meGameOver);
             }
+
+            // +++ プレイヤー操作 +++      ※書いただけで未実装
+            /*
+             inputUI.SetActive(false);      //操作UI隠す
+             */
         }
         else if (PlayerController.gameState == "playing")
         {
@@ -159,4 +174,15 @@ public class GameManager : MonoBehaviour
         int score = stageScore + totalScore;
         scoreText.GetComponent<Text>().text = score.ToString();
     }
+
+    // +++ プレイヤー操作 +++      ※書いただけで未実装
+    //ジャンプ
+    /*
+    public void Jamp()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerController playerCnt = player.GetComponent<PlayerController>();
+        playerCnt.Jump();
+    }
+    */
 }

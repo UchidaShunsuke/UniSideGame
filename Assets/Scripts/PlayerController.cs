@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
 
     public int score = 0;       //スコア
 
+    //タッチスクリーン対応追加　※書いただけで未実装
+    //bool isMoving = false;
+
     void Start()
     {
         rbody = this.GetComponent<Rigidbody2D>();   //Rigidbody2Dを取得
@@ -41,7 +44,16 @@ public class PlayerController : MonoBehaviour
             return;     //キャラクター操作させない（static変数）
         }
 
+        //移動    ※書いただけで未実装
+        /*
+        if (isMoving)
+        {
+            //水平方向の入力をチェック
+        */
         axisH = Input.GetAxisRaw("Horizontal");
+        /*
+        }
+        */
 
         //向きの調整
         if (axisH > 0.0f)
@@ -175,4 +187,20 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rbody = GetComponent<Rigidbody2D>();    //Rigidbody2Dを取得
         rbody.linearVelocity = new Vector2(0, 0);           //速度を 0 にして強制停止
     }
+
+    //タッチスクリーン対応追加  ※書いただけで未実装
+    /*
+    public void SetAxis(float h, float v)
+    {
+        axisH = h;
+        if(axisH == 0)
+        {
+            isMoving = false;
+        }
+        else
+        {
+            isMoving - true;
+        }
+    }
+    */
 }
